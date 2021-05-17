@@ -1,5 +1,5 @@
 {
-  "name": "Ebrairie_Client",
+  "name": "ebrairie_client",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -19,7 +19,11 @@
   },
   "homepage": "https://github.com/Simplon-KIWI/Ebrairie_Client#readme",
   "devDependencies": {
-    "parcel-bundler": "^1.12.5"
+    "logger": "0.0.1",
+    "parcel-bundler": "^1.12.5",
+    "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.1.0"
   },
   "browserslist": [
     "last 3 and_chr versions",
@@ -30,6 +34,7 @@
   ],
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "redux-logger": "^3.0.6"
   }
 }
