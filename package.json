@@ -33,6 +33,7 @@
     "last 3 safari versions"
   ],
   "dependencies": {
+    "public": "^0.1.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "redux-logger": "^3.0.6"
