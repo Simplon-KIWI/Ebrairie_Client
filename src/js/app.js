@@ -5,11 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Home from './pages/home';
 import Login from './pages/login';
+import Register from './pages/register';
+import Resources from './pages/resources';
+import Resource from './pages/resource';
 
 import Layout from './components/layout';
-import Books from './pages/books';
-import Register from './pages/register';
 import Kiwi from './pages/kiwi';
+import Wishlist from './pages/wishlist';
+import Loans from './pages/loans';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,11 +32,14 @@ const App = () => {
   return (
     <Router>
       <Switch>
+        <Route path="/resources" component={Resources} />
+        <Route path="/resources/:id" component={Resource} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Layout>
           <Route path="/" exact component={Home} />
-          <Route path="/books" component={Books} />
+          <Route path="/loans" exact component={Loans} />
+          <Route path="/wishlist" exact component={Wishlist} />
           <Route path="/kiwi" component={Kiwi} />
         </Layout>
       </Switch>
