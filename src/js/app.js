@@ -1,41 +1,37 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthRoute } from "./components/authRoute";
 
-import api from '../utils/api';
+import api from "../utils/api";
 
-import Home from './pages/home';
-import Login from './pages/login';
-import Register from './pages/register';
-import Resources from './pages/resources';
-import Resource from './pages/resource';
+import Home from "./pages/home";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import Resources from "./pages/resources";
+import Resource from "./pages/resource";
 
-import Layout from './components/layout';
-import Kiwi from './pages/kiwi';
-import Wishlist from './pages/wishlist';
-import Loans from './pages/loans';
+import Layout from "./components/layout";
+import Loans from "./pages/loans";
 
 const App = () => {
   const dispatch = useDispatch();
   const appState = useSelector((state) => state.app);
 
   useEffect(async () => {
-
-    dispatch({ type: 'APP_INIT' });
-    dispatch({ type: 'USER_FETCH' })
+    dispatch({ type: "APP_INIT" });
+    dispatch({ type: "USER_FETCH" });
 
     try {
-
-      let result = await api.get('/admin/me');
-      dispatch({ type : 'USER_SET', payload : result.data })
+      let result = await api.get("/admin/me");
+      dispatch({ type: "USER_SET", payload: result.data });
       // console.log('result user data', result.data);
-
     } catch (err) {
       console.error(err);
-      dispatch({ type: 'USER_RESET'})
+      dispatch({ type: "USER_RESET" });
     }
 
-    dispatch({ type: 'APP_READY' });
+    dispatch({ type: "APP_READY" });
 
     // setTimeout(() => {
     //   dispatch({ type: 'APP_READY' });
@@ -52,10 +48,8 @@ const App = () => {
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Layout>
-          <Route path="/" exact component={Home} />
-          <Route path="/loans" exact component={Loans} />
-          <Route path="/wishlist" exact component={Wishlist} />
-          <Route path="/kiwi" component={Kiwi} />
+          <AuthRoute path="/" exact component={Home} />
+          <AuthRoute path="/loans" exact component={Loans} />
         </Layout>
       </Switch>
     </Router>
