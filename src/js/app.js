@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
+
+import api from '../utils/api';
 
 import Home from './pages/home';
 import Login from './pages/login';
@@ -17,12 +18,21 @@ import Loans from './pages/loans';
 const App = () => {
   const dispatch = useDispatch();
   const appState = useSelector((state) => state.app);
-  useEffect(() => {
+  useEffect(async () => {
     dispatch({ type: 'APP_INIT' });
 
-    setTimeout(() => {
-      dispatch({ type: 'APP_READY' });
-    }, 2000);
+    try {
+      let result = await api.get('/admin/me');
+      console.log('result user data', result.data);
+    } catch (err) {
+      console.error(err);
+    }
+
+    dispatch({ type: 'APP_READY' });
+
+    // setTimeout(() => {
+    //   dispatch({ type: 'APP_READY' });
+    // }, 2000);
   }, []);
 
   console.log('APP global state:', appState);
