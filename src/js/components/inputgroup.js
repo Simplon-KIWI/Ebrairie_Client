@@ -1,21 +1,8 @@
 import React from 'react';
 
-const Inputgroup = ({ type, name, id, className, minlength }) => {
-  const handleChange = (event, type) => {
-    // event.target.setCustomValidity("Toujours le même message ?")
-    if (type === 'email') {
-      return event.target.setCustomValidity(
-        'veuillez insérer un email valide : exemple@mail.fr'
-      );
-    }
-    if (type === 'text') {
-      return event.target.setCustomValidity('veuillez renseigner ce champ');
-    }
-    if (type === 'password') {
-      return event.target.setCustomValidity(
-        'veuillez insérer un mot de passe valide'
-      );
-    }
+const Inputgroup = ({ type, name, id, className, minlength, value }) => {
+  const handleChange = (event) => {
+    value(event.target.value, name);
   };
 
   return (
@@ -27,7 +14,7 @@ const Inputgroup = ({ type, name, id, className, minlength }) => {
           id={id}
           className={className}
           onChange={handleChange}
-        //   onChange={(event) => handleChange(event, type)}
+          //   onChange={(event) => handleChange(event, type)}
         />
       )}
       {type === 'password' && (
