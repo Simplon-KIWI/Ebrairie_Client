@@ -41,7 +41,7 @@ const Login = () => {
     <div>
       <h1>C'est la page Login !</h1>
       <form onSubmit={handleSubmit}>
-        <Inputgroup type="email" name=" email" />
+        <Inputgroup type="email" name="email" value={handleChange} />
         <Inputgroup
           type="password"
           name="password"
