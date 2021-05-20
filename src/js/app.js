@@ -18,14 +18,21 @@ import Loans from './pages/loans';
 const App = () => {
   const dispatch = useDispatch();
   const appState = useSelector((state) => state.app);
+
   useEffect(async () => {
+
     dispatch({ type: 'APP_INIT' });
+    dispatch({ type: 'USER_FETCH' })
 
     try {
+
       let result = await api.get('/admin/me');
-      console.log('result user data', result.data);
+      dispatch({ type : 'USER_SET', payload : result.data })
+      // console.log('result user data', result.data);
+
     } catch (err) {
       console.error(err);
+      dispatch({ type: 'USER_RESET'})
     }
 
     dispatch({ type: 'APP_READY' });
@@ -34,8 +41,6 @@ const App = () => {
     //   dispatch({ type: 'APP_READY' });
     // }, 2000);
   }, []);
-
-  console.log('APP global state:', appState);
 
   if (appState.loading) return <p>loading, attendez patiemment, merci</p>;
 
