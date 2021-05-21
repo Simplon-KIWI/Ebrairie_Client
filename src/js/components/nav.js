@@ -6,16 +6,10 @@ const Nav = (props) => {
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </li>
         <li>
           <Link to="/loans">Loans</Link>
-        </li>
-        <li>
-          <Link to="/wishlist">Wishlist</Link>
-        </li>
-        <li>
-          <Link to="/kiwi">Kiwi</Link>
         </li>
       </ul>
     </nav>

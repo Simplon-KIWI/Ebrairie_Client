@@ -43,12 +43,13 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/resources" component={Resources} />
-        <Route path="/resources/:id" component={Resource} />
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
         <Layout>
-          <AuthRoute path="/" exact component={Home} />
+          <Route path="/" exact component={Home} />
+          <Route path="/resources" component={Resources} />
+          <Route path="/resources/:id" component={Resource} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <AuthRoute path="/dashboard" exact component={Home} />
           <AuthRoute path="/loans" exact component={Loans} />
         </Layout>
       </Switch>

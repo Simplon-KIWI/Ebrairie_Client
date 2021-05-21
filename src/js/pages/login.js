@@ -30,7 +30,7 @@ const Login = () => {
     try {
       const result = await api.post('/admin/authenticate', body);
       dispatch({ type: 'USER_SET', payload: result.data });
-      history.push('/');
+      history.push('/dashboard');
     } catch (error) {
       console.log('connection failed');
       setErrors(error.response?.data?.message);
