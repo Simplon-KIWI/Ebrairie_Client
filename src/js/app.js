@@ -32,6 +32,8 @@ const App = () => {
     }
 
     dispatch({ type: "APP_READY" });
+    dispatch({ type: "SET_RESOURCES" });
+    
 
     // setTimeout(() => {
     //   dispatch({ type: 'APP_READY' });

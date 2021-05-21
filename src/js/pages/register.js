@@ -55,7 +55,7 @@ const Register = () => {
         <Inputgroup
           type="password"
           name="password"
-          minlength="8"
+          minlength="1"
           value={handleChange}
         />
         <Button name="M'inscrire" />
