@@ -1,4 +1,5 @@
+.env
 node_modules/
 .cache
 dist/
-.env
+
