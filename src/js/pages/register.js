@@ -1,10 +1,25 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import api from '../../utils/api';
 
 import Inputgroup from '../components/inputgroup';
 import Button from '../components/button';
 
 const Register = () => {
+  let history = useHistory();
+
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleChange = (inputValue, inputName) => {
+    if (inputName === 'firstname') setFirstname(inputValue);
+    if (inputName === 'lastname') setLastname(inputValue);
+    if (inputName === 'email') setEmail(inputValue);
+    if (inputName === 'password') setPassword(inputValue);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -18,7 +33,17 @@ const Register = () => {
 
     const result = await api.post('/admin/register', body);
 
-    console.log('register result', result);
+    try {
+      const result = await api.post('/admin/register', body);
+      console.log(result.status, 'STATUS');
+      if (result.status === 200) {
+        history.push('/login');
+        console.log('200 OK');
+      }
+    } catch (error) {
+      console.log('connection failed');
+      console.error(error.message);
+    }
   };
   return (
     <div>

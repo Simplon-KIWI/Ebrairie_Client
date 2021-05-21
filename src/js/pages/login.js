@@ -12,7 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [errors, setErrors] = useState(null)
+  const [errors, setErrors] = useState(null);
 
   const handleChange = (inputValue, inputName) => {
     if (inputName === 'email') setEmail(inputValue);
@@ -21,7 +21,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors(null)
+    setErrors(null);
     const body = {
       email,
       password,
@@ -29,23 +29,20 @@ const Login = () => {
 
     try {
       const result = await api.post('/admin/authenticate', body);
-      dispatch({ type: 'USER_SET', payload : result.data})
-      history.push('/')
+      dispatch({ type: 'USER_SET', payload: result.data });
+      history.push('/');
     } catch (error) {
       console.log('connection failed');
-      setErrors(error.response?.data?.message)
-      dispatch({ type: 'USER_RESET'})
+      setErrors(error.response?.data?.message);
+      dispatch({ type: 'USER_RESET' });
       // history.push('/kiwi');
       console.error(error.message);
-
     }
   };
 
   return (
     <div>
-      {
-        errors && <p>{errors}</p>
-      }
+      {errors && <p>{errors}</p>}
       <h1>C'est la page Login !</h1>
       <form onSubmit={handleSubmit}>
         <Inputgroup type="email" name="email" value={handleChange} />
